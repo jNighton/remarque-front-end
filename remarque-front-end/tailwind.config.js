@@ -4,5 +4,8 @@ module.exports = {
   theme: {
     extend: {},
   },
-  plugins: [],
+  daisyui: {
+    themes: ["retro"],
+  },
+  plugins: [require("daisyui")],
 }
