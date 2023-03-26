@@ -1,4 +1,7 @@
+import React from "react";
 import { Responsive, WidthProvider } from "react-grid-layout";
+import "../../node_modules/react-grid-layout/css/styles.css";
+import "../../node_modules/react-resizable/css/styles.css";
 
 const ResponsiveGridLayout = WidthProvider(Responsive);
 
@@ -9,30 +12,43 @@ const styles = {
   },
 };
 
-const MyFirstGrid = () => {
-  // const [layoutState, setLayoutState] = useState(['John', 'Grace', 'Jared']);
+const Layout = (props) => {
+  const [items, setItems] = React.useState([
+    { i: "a", x: 0, y: 0, w: 1, h: 1 },
+    { i: "b", x: 2, y: 0, w: 1, h: 1 },
+    { i: "c", x: 0, y: 0, w: 1, h: 1 },
+    { i: "d", x: 2, y: 0, w: 1, h: 1 },
+    { i: "e", x: 0, y: 0, w: 1, h: 1 },
+    { i: "f", x: 2, y: 0, w: 1, h: 1 },
+  ]);
 
-  const layout = {lg:[
-    { i: "a", x: 0, y: 0, w: 6, h: 2},
-    { i: "b", x: 3, y: 4, w: 6, h: 4},
-]
-};
   return (
     <ResponsiveGridLayout
       className="layout"
-      layout={layout}
+      layouts={{ lg: items }}
       breakpoints={{ lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0 }}
-      cols={{ lg: 4, md: 10, sm: 6, xs: 4, xxs: 2 }}
-      margin={[0, 0]}
-      compactType= {"horizontal"}
+      cols={{ lg: 5, md: 4, sm: 3, xs: 2, xxs: 1 }}
+      rowHeight={300}
+      width={1000}
+      margin={[0,0]}
+      resizeHandles={["se"]}
     >
-      <div key="a" style={styles.border}>
-        a
-      </div>
-      <div key="b" style={styles.border}>
-        b
-      </div>
+      {items.map((item) => {
+        return (
+          <div
+            key={item.i}
+            style={styles.border}
+            data-grid={{ x: item.x, y: item.y }}
+          >
+            {item.i}
+          </div>
+        );
+      })}
     </ResponsiveGridLayout>
   );
 };
-export default MyFirstGrid;
+
+const GridLayout = () => {
+  return <Layout />;
+};
+export default GridLayout;
