@@ -1,26 +1,14 @@
-import logo from './logo.svg';
 import './App.css';
+import React from "react";
+import { MyFirstGrid, Planner} from "./components";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <p className="text-red-900">
-          HELLO THIS IS ME
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="w-full grid grid-cols-2 grid-flow-row text-left">
+      <Planner />
+      <MyFirstGrid />
+      </div>
     </div>
   );
 }
